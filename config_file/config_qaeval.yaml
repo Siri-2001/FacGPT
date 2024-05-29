@@ -1,0 +1,28 @@
+common:
+   data_file: ./data/NQ.pt
+   engines:
+      -fid
+      -gpt35
+      -chatgpt
+      -gpt4
+      -newbing
+
+train:
+   weight_decay: 0.001
+   learning_rate: 0.00002
+   batch_size: 2
+   epoch_num: 2
+   sckp_epoch: 5
+   checkpoint_path: ./checkpoint
+
+model:
+   model_hf: microsoft/DialogRPT-updown # microsoft/DialogRPT-updown EleutherAI/gpt-neo-125m
+
+infer:
+   engines:
+      - llava1.57b
+   infer_json: data/VQAv2_500.json
+   checkpoint: checkpoint/2024030415_50_44_158278/Epoch1
+   infer_result_dir: ./infer_result
+   infer_result_file: infer
+   device: cuda:0
